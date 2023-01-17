@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { medium, mobile} from '../responsive'
 
@@ -5,8 +6,8 @@ const Container = styled.div`
    flex: 1;
    margin-top: 55px;
    position: relative;
-
-   
+  
+  
 `
 const Image = styled.img`
   width: 100%;
@@ -27,7 +28,7 @@ const Info = styled.div`
   justify-content: center;
   align-items: center;
 
-  ${medium({})}
+  
 `
 const Title = styled.h1` 
   color: #fff;
@@ -53,12 +54,13 @@ const Button = styled.button`
 `
 
 const CategoryItem = ({item}) => {
+  const navigate = useNavigate()
   return (
     <Container>
          <Image src={item.image}/>
          <Info>
            <Title>{item.title}</Title> 
-           <Button>SHOP NOW</Button>
+           <Button onClick={() => navigate('product-list')}>SHOP NOW</Button>
          </Info> 
     </Container>
   )

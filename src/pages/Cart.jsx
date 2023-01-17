@@ -4,6 +4,8 @@ import Footer from "../Components/Footer"
 import Navbar from "../Components/Navbar"
 import { Add, Remove } from "@material-ui/icons"
 import {medium, mobile} from '../responsive'
+import { useNavigate } from "react-router-dom"
+import Product from "./Product"
 
 const Container = styled.div`
  
@@ -181,14 +183,13 @@ const CheckButton = styled.button`
   font-size: 13px;
 `
 const Cart = () => {
+  const navigate = useNavigate()
   return (
     <Container>
-        <Navbar />
-        <Announcement />
      <Wrapper>
         <TextCenter>Your Bag</TextCenter>
         <TopContent>
-            <Button>Continue Shopping</Button>
+            <Button onClick={() => navigate(-1)}>Continue Shopping</Button>
             <InfoCenter>
                 <SpanText>Shopping Bag (2)</SpanText>
                 <SpanText>Your Wishlist (0)</SpanText>
@@ -223,9 +224,9 @@ const Cart = () => {
 
             <Products>
                 <ProductItem>
-                <ImageItem src="https://i.pinimg.com/originals/2d/af/f8/2daff8e0823e51dd752704a47d5b795c.png" />
+                <ImageItem src="black.jpg" />
                         <ProductInfo>
-                            <ProductName><Bold>Product: </Bold>Philz T-shirt</ProductName>
+                            <ProductName><Bold>Product: </Bold>705 T-shirt</ProductName>
                             <ProductId><Bold>ID: </Bold>3445654664</ProductId>
                             <ProductColor color="grey"></ProductColor>
                             <ProductSizes><Bold>Sizes: </Bold> 35.6</ProductSizes>
@@ -265,8 +266,9 @@ const Cart = () => {
                      </InfoSummary>
                       <CheckButton>Checkout now</CheckButton>
                  </Summary>
-              
         </BottomContent>
+
+        <Product /> 
    </Wrapper>
       <Footer />
     </Container>

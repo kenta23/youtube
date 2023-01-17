@@ -5,6 +5,7 @@ import { useState } from "react"
 import {data} from '../Data'
 import {mobile} from '../responsive'
 import {medium} from '../responsive'
+import { useNavigate } from "react-router-dom"
 
 const Container = styled.div`
    width: 100%;
@@ -14,6 +15,7 @@ const Container = styled.div`
    align-items: center;
    position: relative;  
    overflow-x: hidden;
+   
    
 `
 const ArrowContainer = styled.div`
@@ -43,6 +45,8 @@ const Wrapper = styled.div`
    display: flex;
    transform: translateX(${props => props.slides * -100}vw);
    transition: all 1s ease;
+   align-items: center;
+   
 `
 const InfoContainer = styled.div`
   flex: 1;
@@ -50,6 +54,7 @@ const InfoContainer = styled.div`
   
   ${mobile({padding: '20px'})};
   ${medium({padding: '30px'})}
+  
 `
 const ImgContainer = styled.div`
   flex: 1;
@@ -57,7 +62,7 @@ const ImgContainer = styled.div`
   margin-left: 60px;
   width: 100vw;
 
-  ${mobile({height: '60%', marginLeft: '30px'})};
+  ${mobile({height: '50%', marginLeft: '20px'})};
   ${medium({height: '70%', marginLeft: '30px'})};
   
   
@@ -112,6 +117,8 @@ const Slider = () => {
         setSliderIndex(sliderIndex < 2 ? sliderIndex + 1 : 0)
     }
   }
+
+  const navigate = useNavigate()
   return (
     <Container>
       <ArrowContainer direction="left" onClick={handleClick}>
@@ -128,7 +135,7 @@ const Slider = () => {
              <InfoContainer>
                   <Title>{items.title}</Title>
                   <Desc>{items.desc}</Desc>
-                  <Button>Shop Now!</Button>
+                  <Button onClick={() => navigate('product-list')}>Shop Now!</Button>
              </InfoContainer>
             </Slide>     
          ))} 

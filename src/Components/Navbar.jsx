@@ -4,6 +4,8 @@ import React from 'react'
 import styled from 'styled-components'
 import {mobile} from '../responsive'
 import {medium} from '../responsive'
+import { Link, useNavigate } from 'react-router-dom';
+import Cart from '../pages/Cart';
 
 const iconStyle = {
     position: 'absolute',
@@ -71,6 +73,7 @@ const Input = styled.input`
 const Logo = styled.h1`
    font-weight: bold;
    text-transform: uppercase;
+   cursor: pointer;
 
    ${mobile ({fontSize: "23px"})}
 `
@@ -81,6 +84,11 @@ const MenuItem = styled.div`
    ${mobile({fontSize: '12px'})}
 `
 const Navbar = () => {
+    const signin = useNavigate()
+    const signup = useNavigate()
+    const home = useNavigate()
+    const cart = useNavigate()
+   
   return (
     <Container>
       <Wrapper>
@@ -92,13 +100,13 @@ const Navbar = () => {
             </SearchContainer>
          </Left>
         <Center>
-            <Logo>Logo</Logo>
+            <Logo onClick={() => home('/')}>Shoplify</Logo>
         </Center>
 
         <Right>
-            <MenuItem>Register</MenuItem>
-            <MenuItem>Sign in</MenuItem>
-            <MenuItem>
+            <MenuItem onClick={() => signup('sign-up')}>Register</MenuItem>
+            <MenuItem onClick={() => signin('sign-in')}>Sign in</MenuItem>
+            <MenuItem onClick={() => cart('add-to-cart')}>
               <Badge badgeContent={4} color="error">
                   <ShoppingCartOutlined />
               </Badge>
